@@ -18,10 +18,14 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-      - name: Build JAR (backend)
+            - name: Build JAR (backend)
         run: |
           cd springboot/app
           mvn -B -DskipTests package
+          ls -la target
+          JAR=$(ls target/*.jar | head -n 1)
+          echo "Detected JAR: $JAR"
+          cp "$JAR" target/demo-0.0.1.jar
 
             - name: Build backend image
         run: |
