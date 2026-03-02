@@ -18,17 +18,7 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-          - name: Build backend JAR
-  run: mvn -B -DskipTests package --file springboot/app/pom.xml
-
-      - name: Debug - show backend Dockerfile and target folder
-        run: |
-          echo "=== Dockerfile used ==="
-          sed -n '1,120p' springboot/app/Dockerfile
-          echo "=== Listing springboot/app ==="
-          ls -la springboot/app || true
-          echo "=== Listing target (if exists) ==="
-          ls -la springboot/app/target || true
+       
 
             - name: Build backend image
   run: |
